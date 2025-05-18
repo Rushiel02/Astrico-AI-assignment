@@ -28,7 +28,7 @@ def create_learner():
             mobile_number=data['mobile_number'].strip(),
             institution_id=data['institution_id'],
             course=data.get('course', '').strip() or None,  # Handle optional field
-            batch=data.get('batch', '').strip() or None     # Handle optional field
+            batch=data.get('batch', '').strip() or None,    # Handle optional field
         )
         
         db.session.add(learner)
