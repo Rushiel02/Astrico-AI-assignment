@@ -13,7 +13,7 @@ class Institution(db.Model):
     contact_person_name = db.Column(db.String(100), nullable=False)
     contact_person_email = db.Column(db.String(100), nullable=False)
     contact_person_mobile = db.Column(db.String(15), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Relationships
     learners = db.relationship('Learner', backref='institution', lazy=True)
@@ -45,7 +45,7 @@ class Learner(db.Model):
     institution_id = db.Column(db.Integer, db.ForeignKey('institution.id'), nullable=False)
     course = db.Column(db.String(100), nullable=True)  # Optional
     batch = db.Column(db.String(50), nullable=True)    # Optional
-    created_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
         return f'<Learner {self.full_name}>'
@@ -72,7 +72,7 @@ class Assessor(db.Model):
     mobile_number = db.Column(db.String(15), nullable=False)
     institution_id = db.Column(db.Integer, db.ForeignKey('institution.id'), nullable=False)
     role = db.Column(db.String(20), nullable=False)  # Internal/External
-    created_at = db.Column(db.DateTime, default=datetime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     def __repr__(self):
         return f'<Assessor {self.full_name}>'
